@@ -1,0 +1,57 @@
+#!/bin/python3
+
+import os
+import sys
+
+#
+# Complete the getMoneySpent function below.
+#
+def getMoneySpent(keyboards, drives, b):
+    """
+    Finds the most expensive combination of one keyboard and one drive
+    that can be bought without exceeding the budget.
+
+    Args:
+        keyboards (List[int]): Prices of available keyboards.
+        drives (List[int]): Prices of available USB drives.
+        b (int): Budget.
+
+    Returns:
+        int: The maximum money spent on one keyboard and one drive,
+             or -1 if no combination is affordable.
+    """
+    #
+    # Write your code here.
+    #
+    spent = -1
+    for i in keyboards:
+        for j in drives:
+            sum = i + j
+            if sum <= b and sum > spent:
+                spent = sum
+    return spent
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    bnm = input().split()
+
+    b = int(bnm[0])
+
+    n = int(bnm[1])
+
+    m = int(bnm[2])
+
+    keyboards = list(map(int, input().rstrip().split()))
+
+    drives = list(map(int, input().rstrip().split()))
+
+    #
+    # The maximum amount of money she can spend on a keyboard and USB drive, or -1 if she can't purchase both items
+    #
+
+    moneySpent = getMoneySpent(keyboards, drives, b)
+
+    fptr.write(str(moneySpent) + '\n')
+
+    fptr.close()
